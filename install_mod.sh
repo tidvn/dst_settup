@@ -18,7 +18,7 @@ mods_setup_file="./mods/dedicated_server_mods_setup.lua"
 echo "" > "$mods_setup_file"
 
 shopt -s nullglob dotglob
-for file in ./*/Master/modoverrides.lua; do
+for file in ./Master/modoverrides.lua; do
     if [ -f "$file" ]; then
         grep -o 'workshop-[0-9]*' "$file" | sed 's/workshop-//' | sort -u | awk '{print "    ServerModSetup(\"" $1 "\")"}' >> "$mods_setup_file"
     fi
